@@ -1,4 +1,14 @@
-#这里包含一些变成过程中的记录，遇到的问题
+##这里包含一些变成过程中的记录，遇到的问题
+....
+```cpp
+服务器端安全可靠的后台运行工具：
+nohup ./ser > serLog.out 2>&1 &
+nohup ./FTS > FTSLog.out 2>&1 &
+
+服务器端输出重定向到：serLog.out 和 FTSLog.out 
+使用 jobs 查看任务
+使用 fg %n　关闭
+
 
 //查找用户‘qqq’的文件列表
 select user_id,filename,size,type from user,files where user.user_id='qqq' and user.file_id=files.id;
@@ -44,14 +54,7 @@ g++ -o Ser testser.cpp conSer.a
 
 memcached启动：
 /usr/local/bin/memcached -m 10 -u root -l 127.0.0.1 -p 11211 -c 256 -vv
-
-
-#define LOGIN_S 1
-#define LOGIN_F 2
-
-#define REGIS_S 3
-#define REGIS_F 4
-#define REGIS_E 5
+```
 
 
 
