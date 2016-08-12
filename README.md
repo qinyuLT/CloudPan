@@ -16,6 +16,8 @@
 - 负责聊天相关的操作
 
 ##version 2.0
+相对version1.0版本的改进是：使用[G6](http://www.oschina.net/p/G6)开源负载均衡器，并加入相应的进程池、连接池；</br>
+
 该项目是在linux下采用C/C++编程，基于TCP协议，服务器端采用多进程长连接的socket的通信方式，并采用开源的负载均衡器G6作为客户端请求与服务端响应的中间件分发器，[G6](http://www.oschina.net/p/G6)是该开发者在[G5](http://www.oschina.net/p/g5)的基础上的升级版，相比G5多了心跳报告和命令管理的功能，所以对于服务器的状态就不需要关心了，包括服务器的组装，只需要修改G6的配置文件。考虑到服务器端如果每接收到一个请求fork一个进程处理方式的效率低，所以服务器端采用进程池方式，结合[libevent](http://libevent.org/)网络库，可以处理并发的TCP连接请求，同时对数据库的访问会带来同样的问题，所以实现了一个基于[mysqlclient](https://pypi.python.org/pypi/mysqlclient)接口的连接池。
 
 ###一共使用三个端口
