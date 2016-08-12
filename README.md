@@ -1,4 +1,21 @@
 # CloudPan
+###version 1.0
+####系统架构图
+
+![](https://github.com/qinyuLT/Images/blob/master/cloudpan.png)</br>
+
+###负载均衡服务器的作用：
+- 1.接收Cli端客户请求消息Request Msg，并作相应处理，回传Respone Msg;
+- 2.负载均衡服务器负责客户的登录、注册功能;
+- 3.负载均衡服务器管理后端的功能处理服务器（FileTransServer、ChartServer）,选择合适服务器处理业务
+
+###FileTransServer：
+- 负责文件处理相关的操作
+
+###ChartServer
+- 负责聊天相关的操作
+
+###version 2.0
 该项目是在linux下采用C/C++编程，基于TCP协议，服务器端采用多进程长连接的socket的通信方式，并采用开源的负载均衡器G6作为客户端请求与服务端响应的中间件分发器，[G6](http://www.oschina.net/p/G6)是该开发者在[G5](http://www.oschina.net/p/g5)的基础上的升级版，相比G5多了心跳报告和命令管理的功能，所以对于服务器的状态就不需要关心了，包括服务器的组装，只需要修改G6的配置文件。考虑到服务器端如果每接收到一个请求fork一个进程处理方式的效率低，所以服务器端采用进程池方式，结合[libevent](http://libevent.org/)网络库，可以处理并发的TCP连接请求，同时对数据库的访问会带来同样的问题，所以实现了一个基于[mysqlclient](https://pypi.python.org/pypi/mysqlclient)接口的连接池。
 
 ###一共使用三个端口
