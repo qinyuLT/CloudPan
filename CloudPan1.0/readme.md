@@ -49,7 +49,8 @@ g++ -o Ser testser.cpp conSer.a
 
 //问题3：错误：no match 为‘operator<’在‘std::bind(_Functor, _ArgTypes ...) [with _Functor = int, _ArgTypes = sockaddr*, unsigned int](((sockaddr*)(&((conSer*)this)->conSer::seraddr)), 16u) < 0’中
  由于memcached的调用涉及到C++11标准（即在编译时需要加上--std=gnu++0x），所以Socket下的bind()函数和STL下的bind()函数发生冲突
-解决方法：1.在使用socket下的bind()函数所在的类中禁止使用using namespace std;由于调试需要，这种办法不可取
+解决方法：
+	1.在使用socket下的bind()函数所在的类中禁止使用using namespace std;由于调试需要，这种办法不可取
 	2.在使用socket下的bind()函数时，在bind()前加“::”运算符
 
 memcached启动：
